@@ -1,52 +1,173 @@
-# Prerequisites
-*.d
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+int fAndCConverter();//Not exact. But works
+int bAndDConverter();
+int kAndMConverter();
 
-# Linker output
-*.ilk
-*.map
-*.exp
 
-# Precompiled Headers
-*.gch
-*.pch
+int main()
+{
+    printf("\n\nThis is my converter. you can convert different kinds of values.\n");
+    printf("\n\n\n          1 for Fahrenheit to Celsius and Celsius to Fahrenheit converter\n");
+    printf("          2 for Km to Miles and Miles to Km converter\n");
+    printf("          3 for Decimal to Binary and Binary to Decimal converter\n\n");
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+    printf("press 'e' to exit at any time\n\n\n");
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+    printf("enter a number:");
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+    char mainChoise;
+    scanf("%c" , &mainChoise);
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+    if(mainChoise == '1')
+    {
+        fAndCConverter();
+    }
+    else if(mainChoise == '2')
+    {
+        kAndMConverter();
+    }
+    else if(mainChoise == '3')
+    {
+        bAndDConverter();
+    }
+    else if(mainChoise == 'e')
+    {
+        exit(0);
+    }
+}
+int bAndDConverter()
+{
+    int b;
+    int d = 0;
+    int n, r;
+    int sum = 1;
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+    printf("press B to convert Binary to Decimal and D to convert Decimal to Binary\n");
+
+    char choise;
+    scanf("%c" , &choise);
+
+    if(choise == 'b')
+    {
+        printf("enter Binary number:\n");
+        scanf("%d" , &n);
+
+        b = n;
+
+        while(n > 0)
+        {
+            r = n % 10;
+            d = d + r * sum;
+            n = n / 10;
+            sum = sum * 2;
+        }
+        printf("the value of %d in Decimal is: %d" , b , d);
+    }
+    else if(choise == 'd') // working on that
+    {
+        printf("enter Decimal number\n");
+        scanf("%d" , &d);
+
+        printf("the Binary value of %d is %d" , d , b);
+    }
+    else if(choise == 'e')
+    {
+        exit(0);
+    }
+    else if (choise != 'b' && choise != 'd')
+    {
+    printf("error! plz try again\n");
+    bAndDConverter();
+    }
+
+    main();
+    return 0;
+}
+int kAndMConverter()
+{
+    double k;
+    double m;
+    printf("press K for Km or M for Miles\n");
+
+    char choise;
+    scanf("%c" , &choise);
+
+    if(choise == 'k')
+    {
+    printf("enter number of Km:\n");
+    scanf("%lf" , &k);
+    for(int i = 0; i < k; i++)
+    {
+        m += 0.621371192;
+    }
+
+    printf("%.2lf Km is: %.3lf Miles\n" , k, m);
+    }
+    else if(choise == 'm')
+    {
+    printf("enter number of Miles:\n");
+    scanf("%lf" , &m);
+    for(int j = 0; j < m; j++)
+    {
+        k += 1.6093;
+    }
+
+    printf("%.2lf Miles is: %.2lf Km\n" , m, k);
+    }
+    else if(choise == 'e')
+    {
+        exit(0);
+    }
+    else if (choise != 'm' && choise != 'k')
+        {
+        printf("error! plz try again\n");
+        kAndMConverter();
+        }
+
+        main();
+    return 0;
+}
+int fAndCConverter()
+{
+    int f;
+    int c;
+    printf("press F for Fahrenheit or C for Celsius\n");
+
+    char choise;
+    scanf("%c" , &choise);
+
+    if(choise == 'c')
+    {
+    printf("enter degrees in Celsius:");
+    scanf("%d" , &c);
+
+    f = c * 2 + 30;
+
+    printf("%d Celsius is %d Fahrenheit\n" , c , f);
+    }
+    else if(choise == 'f')
+    {
+    printf("enter degrees in Fahrenheit:\n");
+    scanf("%d" , &f);
+
+    c = (f - 30) / 2;
+
+    printf("%d Fahrenheit is %d Celsius\n" , f , c);
+    }
+    else if(choise == 'e')
+    {
+        exit(0);
+    }
+    else if(choise != 'm' && choise != 'k')
+        {
+        printf("error! plz try again\n");
+        fAndCConverter();
+        }
+
+    main();
+
+    return 0;
+}
