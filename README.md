@@ -1,1 +1,1 @@
-# km-binary-Celsius-convertor
+# KM-Binary-Celsius-convertor
